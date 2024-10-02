@@ -4,26 +4,40 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
+#include "AbilitySystemInterface.h"
 #include "TungstenCharacterBase.generated.h"
 
+class UTungstenAbilitySystemComponent;
+class UTungstenAttributeSet;
+class UDataAsset_StartUpDataBase;
+
 UCLASS()
-class TUNGSTEN_API ATungstenCharacterBase : public ACharacter
+class TUNGSTEN_API ATungstenCharacterBase : public ACharacter, public IAbilitySystemInterface
 {
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this character's properties
 	ATungstenCharacterBase();
 
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
+	//~ Begin IAbilitySystemInterface Interface
+	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const;
+	//~ End IAbilitySystemInterface Interface
 
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+protected:	
+	//~ Begin APawn Interface
+	virtual void PossessedBy(AController* NewController) override;
+	//~ End APawn Interface
 
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
+	UTungstenAbilitySystemComponent* TungstenAbilitySystemComponent;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Camera")
+	UTungstenAttributeSet* TungstenAttributeSet;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "CharacterData")
+	TSoftObjectPtr<UDataAsset_StartUpDataBase> CharacterStartUpData;
+
+public:
+	FORCEINLINE UTungstenAbilitySystemComponent* GetTungstenAbilitySystemComponent() const { return TungstenAbilitySystemComponent; }
+	FORCEINLINE UTungstenAttributeSet* GetTungstenAttributeSet() const { return TungstenAttributeSet; }
 };

@@ -2,30 +2,35 @@
 
 
 #include "Characters/TungstenCharacterBase.h"
+#include "AbilitySystem/TungstenAttributeSet.h"
+#include "AbilitySystem/TungstenAbilitySystemComponent.h"
+
 
 ATungstenCharacterBase::ATungstenCharacterBase()
 {
- 	
 	PrimaryActorTick.bCanEverTick = false;
 	PrimaryActorTick.bStartWithTickEnabled = false;
 	GetMesh()->bReceivesDecals = false;
+
+	TungstenAbilitySystemComponent = CreateDefaultSubobject<UTungstenAbilitySystemComponent>(TEXT("TungstenAbilitySystemComponent"));
+	TungstenAttributeSet = CreateDefaultSubobject<UTungstenAttributeSet>(TEXT("TungstenAttributeSystem"));
 }
 
-void ATungstenCharacterBase::BeginPlay()
+UAbilitySystemComponent* ATungstenCharacterBase::GetAbilitySystemComponent() const
 {
-	Super::BeginPlay();
-	
+	return GetTungstenAbilitySystemComponent();
 }
 
-void ATungstenCharacterBase::Tick(float DeltaTime)
+void ATungstenCharacterBase::PossessedBy(AController* NewController)
 {
-	Super::Tick(DeltaTime);
+	Super::PossessedBy(NewController);
 
+	if (TungstenAbilitySystemComponent)
+	{
+		TungstenAbilitySystemComponent->InitAbilityActorInfo(this, this);
+
+		ensureMsgf(!CharacterStartUpData.IsNull(), TEXT("Forgot to assign start up data to %s"), *GetName());
+	}
 }
 
-void ATungstenCharacterBase::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
-{
-	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
-}
 

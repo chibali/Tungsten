@@ -10,6 +10,9 @@
 #include "DataAssets/Input/DataAsset_InputConfig.h"
 #include "Components/Input/TungstenInputComponent.h"
 #include "TungstenGameplayTags.h"
+#include "AbilitySystem/TungstenAbilitySystemComponent.h"
+#include "DataAssets/StartUpData/DataAsset_CharacterData.h"
+
 #include "TungstenDebugHelper.h"
 
 ATungstenCharacter::ATungstenCharacter()
@@ -35,6 +38,19 @@ ATungstenCharacter::ATungstenCharacter()
 	GetCharacterMovement()->MaxWalkSpeed = 400.f;
 	GetCharacterMovement()->BrakingDecelerationWalking = 2000.f;
 
+}
+
+void ATungstenCharacter::PossessedBy(AController* NewController)
+{
+	Super::PossessedBy(NewController);
+	if (!CharacterStartUpData.IsNull())
+	{
+		if (UDataAsset_StartUpDataBase* LoadedData = CharacterStartUpData.LoadSynchronous())
+		{
+			LoadedData->GiveToAbilitySystemComponent(TungstenAbilitySystemComponent);
+		}
+
+	}
 }
 
 void ATungstenCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
