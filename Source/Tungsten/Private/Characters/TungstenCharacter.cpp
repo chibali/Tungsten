@@ -71,7 +71,6 @@ void ATungstenCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputC
 void ATungstenCharacter::BeginPlay()
 {
 	Super::BeginPlay();
-	Debug::Print(TEXT("Working"));
 }
 
 void ATungstenCharacter::Input_Move(const FInputActionValue& InputActionValue)
