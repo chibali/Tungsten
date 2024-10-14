@@ -3,6 +3,7 @@
 
 #include "AbilitySystem/Abilities/TungstenGameplayAbility.h"
 #include "AbilitySystem/TungstenAbilitySystemComponent.h"
+#include "Components/Combat/PawnCombatComponent.h"
 
 void UTungstenGameplayAbility::OnGiveAbility(const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilitySpec& Spec)
 {
@@ -28,4 +29,9 @@ void UTungstenGameplayAbility::EndAbility(const FGameplayAbilitySpecHandle Handl
 			ActorInfo->AbilitySystemComponent->ClearAbility(Handle);
 		}
 	}
+}
+
+UPawnCombatComponent* UTungstenGameplayAbility::GetPawnCombatComponentFromActorInfo() const
+{
+	return GetAvatarActorFromActorInfo()->FindComponentByClass<UPawnCombatComponent>();
 }

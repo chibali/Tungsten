@@ -12,6 +12,7 @@
 #include "TungstenGameplayTags.h"
 #include "AbilitySystem/TungstenAbilitySystemComponent.h"
 #include "DataAssets/StartUpData/DataAsset_CharacterData.h"
+#include "Components/Combat/CharacterCombatComponent.h"
 
 #include "TungstenDebugHelper.h"
 
@@ -37,6 +38,8 @@ ATungstenCharacter::ATungstenCharacter()
 	GetCharacterMovement()->RotationRate = FRotator(0.f, 500.f, 0.f);
 	GetCharacterMovement()->MaxWalkSpeed = 400.f;
 	GetCharacterMovement()->BrakingDecelerationWalking = 2000.f;
+
+	CharacterCombatComponent = CreateDefaultSubobject<UCharacterCombatComponent>(TEXT("CharacterCombatComponent"));
 
 }
 
