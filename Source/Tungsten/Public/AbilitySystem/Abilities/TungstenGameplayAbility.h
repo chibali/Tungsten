@@ -7,6 +7,7 @@
 #include "TungstenGameplayAbility.generated.h"
 
 class UPawnCombatComponent;
+class UTungstenAbilitySystemComponent;
 
 UENUM(BlueprintType)
 enum class ETungstenAbilityActivationPolicy : uint8
@@ -33,4 +34,7 @@ protected:
 
 	UFUNCTION(BlueprintPure, Category = "Warrior|Ability")
 	UPawnCombatComponent* GetPawnCombatComponentFromActorInfo() const;
+
+	UFUNCTION(BlueprintPure, Category = "Warrior|Ability")
+	UTungstenAbilitySystemComponent* GetTungstenAbilitySystemComponentFromActorInfo() const;
 };

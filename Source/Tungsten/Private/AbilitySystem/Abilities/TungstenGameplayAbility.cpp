@@ -35,3 +35,9 @@ UPawnCombatComponent* UTungstenGameplayAbility::GetPawnCombatComponentFromActorI
 {
 	return GetAvatarActorFromActorInfo()->FindComponentByClass<UPawnCombatComponent>();
 }
+
+UTungstenAbilitySystemComponent* UTungstenGameplayAbility::GetTungstenAbilitySystemComponentFromActorInfo() const
+{
+	return Cast<UTungstenAbilitySystemComponent>(CurrentActorInfo->AbilitySystemComponent);
+	 
+}

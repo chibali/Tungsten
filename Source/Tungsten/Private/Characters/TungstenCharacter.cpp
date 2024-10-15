@@ -69,6 +69,7 @@ void ATungstenCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputC
 	UTungstenInputComponent* TungstenInputComponent = CastChecked<UTungstenInputComponent>(PlayerInputComponent);
 	TungstenInputComponent->BindNativeInputAction(InputConfigDataAsset, TungstenGameplayTags::InputTag_Move, ETriggerEvent::Triggered, this, &ATungstenCharacter::Input_Move);
 	TungstenInputComponent->BindNativeInputAction(InputConfigDataAsset, TungstenGameplayTags::InputTag_Look, ETriggerEvent::Triggered, this, &ATungstenCharacter::Input_Look);
+	TungstenInputComponent->BindAbilityInputAction(InputConfigDataAsset, this, &ATungstenCharacter::Input_AbilityInputPressed, &ATungstenCharacter::Input_AbilityInputReleased);
 }
 
 void ATungstenCharacter::BeginPlay()
@@ -104,4 +105,14 @@ void ATungstenCharacter::Input_Look(const FInputActionValue& InputActionValue)
 	{
 		AddControllerPitchInput(LookAxisVector.Y);
 	}
+}
+
+void ATungstenCharacter::Input_AbilityInputPressed(FGameplayTag InInputTag)
+{
+	TungstenAbilitySystemComponent->OnAbilityInputPressed(InInputTag);
+}
+
+void ATungstenCharacter::Input_AbilityInputReleased(FGameplayTag InInputTag)
+{
+	TungstenAbilitySystemComponent->OnAbilityInputReleased(InInputTag);
 }
