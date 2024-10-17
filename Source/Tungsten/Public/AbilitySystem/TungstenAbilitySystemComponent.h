@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "AbilitySystemComponent.h"
+#include "TungstenTypes/TungstenStructTypes.h"
 #include "TungstenAbilitySystemComponent.generated.h"
 
 /**
@@ -18,4 +19,7 @@ public:
 
 	void OnAbilityInputPressed(const FGameplayTag& InInputTag);
 	void OnAbilityInputReleased(const FGameplayTag& InInputTag);
+
+	UFUNCTION(BlueprintCallable, Category = "Warrior|Ability", meta = (ApplyLevel = "1"))
+	void GrantCharacterWeaponAbilities(const TArray<FTungstenCharacterAbilitySet>& InDefaultWeaponAbilities, int32 ApplyLevel, TArray<FGameplayAbilitySpecHandle>& OutGrantedAbilitySpecHandles);
 };

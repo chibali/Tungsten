@@ -8,7 +8,7 @@
 
 class ATungstenCharacterBase;
 class UCharacterMovementComponent;
-
+class UTungstenHeroAnimInstance;
 /**
  * 
  */
@@ -17,4 +17,7 @@ class TUNGSTEN_API UTungstenCharacterLinkedAnimLayer : public UTungstenBaseAnimI
 {
 	GENERATED_BODY()
 
+public:
+	UFUNCTION(BlueprintPure, meta = (BlueprintThreadSafe))
+	UTungstenHeroAnimInstance* GetCharacterAnimInstance() const;
 };

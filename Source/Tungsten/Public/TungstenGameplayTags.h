@@ -15,7 +15,8 @@ namespace TungstenGameplayTags
 	/** Player Tags **/
 	TUNGSTEN_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_Weapon_Sword);
 	TUNGSTEN_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_Weapon_Shield);
-
+	TUNGSTEN_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_Ability_Equip);
+	TUNGSTEN_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_Ability_Unequip);
 	/** Event Tags **/
 	TUNGSTEN_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_Event_Equip);
 	TUNGSTEN_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_Event_Unequip);

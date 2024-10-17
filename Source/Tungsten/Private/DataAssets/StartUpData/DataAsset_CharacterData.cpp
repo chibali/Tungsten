@@ -4,11 +4,7 @@
 #include "DataAssets/StartUpData/DataAsset_CharacterData.h"
 #include "AbilitySystem/Abilities/TungstenGameplayAbility.h"
 #include "AbilitySystem/TungstenAbilitySystemComponent.h"
-
-bool FTungstenCharacterAbilitySet::IsValid() const
-{
-    return InputTag.IsValid() && AbilityToGrant;
-}
+#include "TungstenTypes/TungstenStructTypes.h"
 
 void UDataAsset_CharacterData::GiveToAbilitySystemComponent(UTungstenAbilitySystemComponent* InTungstenASCToGive, int32 ApplyLevel)
 {

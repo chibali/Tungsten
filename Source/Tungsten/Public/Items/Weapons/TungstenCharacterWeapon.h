@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Items/Weapons/TungstenWeaponBase.h"
+#include "TungstenTypes/TungstenStructTypes.h"
 #include "TungstenCharacterWeapon.generated.h"
 
 /**
@@ -14,4 +15,7 @@ class TUNGSTEN_API ATungstenCharacterWeapon : public ATungstenWeaponBase
 {
 	GENERATED_BODY()
 	
+public:
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "WeaponData")
+	FTungstenCharacterWeaponData CharacterWeaponData;
 };

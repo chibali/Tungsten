@@ -4,22 +4,9 @@
 
 #include "CoreMinimal.h"
 #include "DataAssets/StartUpData/DataAsset_StartUpDataBase.h"
-#include "GameplayTagContainer.h"
 #include "DataAsset_CharacterData.generated.h"
 
-USTRUCT(BlueprintType)
-struct FTungstenCharacterAbilitySet
-{
-	GENERATED_BODY()
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (Categories = "InputTag"))
-	FGameplayTag InputTag;
-
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	TSubclassOf<UTungstenGameplayAbility> AbilityToGrant;
-
-	bool IsValid() const;
-};
+struct FTungstenCharacterAbilitySet;
 
 /**
  * 

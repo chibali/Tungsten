@@ -6,6 +6,8 @@
 #include "Components/Combat/PawnCombatComponent.h"
 #include "CharacterCombatComponent.generated.h"
 
+class ATungstenCharacterWeapon;
+
 /**
  * 
  */
@@ -14,4 +16,7 @@ class TUNGSTEN_API UCharacterCombatComponent : public UPawnCombatComponent
 {
 	GENERATED_BODY()
 	
+public:
+	UFUNCTION(BlueprintPure, Category = "Warrior|Combat")
+	ATungstenCharacterWeapon* GetHeroCarriedWeaponByTag(FGameplayTag InWeaponTag);
 };
