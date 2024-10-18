@@ -6,8 +6,8 @@
 #include "TungstenStructTypes.generated.h"
 
 class UTungstenCharacterLinkedAnimLayer;
-class UTungstenGameplayAbility;
 class UInputMappingContext;
+class UTungstenCharacterGameplayAbility;
 
 USTRUCT(BlueprintType)
 struct FTungstenCharacterAbilitySet
@@ -18,7 +18,7 @@ struct FTungstenCharacterAbilitySet
 	FGameplayTag InputTag;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
-	TSubclassOf<UTungstenGameplayAbility> AbilityToGrant;
+	TSubclassOf<UTungstenCharacterGameplayAbility> AbilityToGrant;
 
 	bool IsValid() const;
 };

@@ -2,7 +2,7 @@
 
 
 #include "TungstenTypes/TungstenStructTypes.h"
-#include "AbilitySystem/Abilities/TungstenGameplayAbility.h"
+#include "AbilitySystem/Abilities/TungstenCharacterGameplayAbility.h"
 
 bool FTungstenCharacterAbilitySet::IsValid() const
 {
