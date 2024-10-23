@@ -4,6 +4,7 @@
 #include "TungstenFunctionLibrary.h"
 #include "AbilitySystemBlueprintLibrary.h"
 #include "AbilitySystem/TungstenAbilitySystemComponent.h"
+#include "Interfaces/PawnCombatInterface.h"
 
 UTungstenAbilitySystemComponent* UTungstenFunctionLibrary::NativeGetTunsgtenASCFromActor(AActor* InActor)
 {
@@ -38,4 +39,23 @@ bool UTungstenFunctionLibrary::NativeDoesActorHaveTag(AActor* InActor, FGameplay
 void UTungstenFunctionLibrary::BP_DoesActorHaveTag(AActor* InActor, FGameplayTag TagToCheck, ETungstenConfirmType& OutConfirmType)
 {
 	OutConfirmType = NativeDoesActorHaveTag(InActor, TagToCheck) ? ETungstenConfirmType::Yes : ETungstenConfirmType::No;
+}
+
+UPawnCombatComponent* UTungstenFunctionLibrary::NativeGetPawnCombatComponentFromActor(AActor* InActor)
+{
+	check(InActor);
+
+	if (IPawnCombatInterface* PawnCombatInterface = Cast<IPawnCombatInterface>(InActor))
+	{
+		return PawnCombatInterface->GetPawnCombatComponent();
+	}
+
+	return nullptr;
+}
+
+UPawnCombatComponent* UTungstenFunctionLibrary::BP_GetPawnCombatComponentFromActor(AActor* InActor, ETungstenValidType& OutValidType)
+{
+	UPawnCombatComponent* CombatComponent = NativeGetPawnCombatComponentFromActor(InActor);
+	OutValidType = CombatComponent ? ETungstenValidType::Valid : ETungstenValidType::Invalid;
+	return CombatComponent;
 }

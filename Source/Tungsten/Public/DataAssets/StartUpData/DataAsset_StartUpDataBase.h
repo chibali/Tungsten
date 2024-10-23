@@ -8,6 +8,7 @@
 
 class UTungstenGameplayAbility;
 class UTungstenAbilitySystemComponent;
+class UGameplayEffect;
 /**
  * 
  */
@@ -26,5 +27,10 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "StartUpData")
 	TArray<TSubclassOf<UTungstenGameplayAbility>> ReactiveAbilities;
 
+	UPROPERTY(EditDefaultsOnly, Category = "StartUpData")
+	TArray<TSubclassOf<UGameplayEffect>> StartUpGameplayEffects;
+
 	void GrantAbilities(const TArray<TSubclassOf<UTungstenGameplayAbility>>& InAbilitiesToGive, UTungstenAbilitySystemComponent* InASCToGive, int32 ApplyLevel = 1);
+
+
 };

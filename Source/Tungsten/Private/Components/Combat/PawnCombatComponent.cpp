@@ -3,7 +3,7 @@
 
 #include "Components/Combat/PawnCombatComponent.h"
 #include "Items/Weapons/TungstenWeaponBase.h"
-
+#include "Components/BoxComponent.h"
 #include "TungstenDebugHelper.h"
 
 void UPawnCombatComponent::RegisterSpawnedWeapon(FGameplayTag InWeaponTagToRegister, ATungstenWeaponBase* InWeaponToRegister, bool bRegisterAsEquippedWeapon)
@@ -39,4 +39,24 @@ ATungstenWeaponBase* UPawnCombatComponent::GetCharacterCurrentEquippedWeapon() c
 	if (!CurrentEquippedWeaponTag.IsValid()) return nullptr;
 
 	return GetCharacterCarriedWeaponByTag(CurrentEquippedWeaponTag);
+}
+
+void UPawnCombatComponent::ToggleWeaponCollision(bool bShouldEnable, EToggleDamageType ToggleDamageType)
+{
+	if (ToggleDamageType == EToggleDamageType::CurrentEquippedWeapon)
+	{
+		ATungstenWeaponBase* WeaponToToggle = GetCharacterCurrentEquippedWeapon();
+
+		check(WeaponToToggle);
+
+		if (bShouldEnable)
+		{
+			WeaponToToggle->GetWeaponBox()->SetCollisionEnabled(ECollisionEnabled::QueryOnly);
+		}
+		else
+		{
+			WeaponToToggle->GetWeaponBox()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+		}
+		
+	}
 }

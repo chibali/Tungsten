@@ -25,6 +25,11 @@ ATungstenEnemy::ATungstenEnemy()
 	EnemyCombatComponent = CreateDefaultSubobject<UEnemyCombatComponent>(TEXT("EnemyCombatComponent"));
 }
 
+UPawnCombatComponent* ATungstenEnemy::GetPawnCombatComponent() const
+{
+	return EnemyCombatComponent;
+}
+
 void ATungstenEnemy::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);

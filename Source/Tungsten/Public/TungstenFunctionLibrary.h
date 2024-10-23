@@ -4,16 +4,11 @@
 
 #include "CoreMinimal.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
+#include "TungstenTypes/TungstenEnumTypes.h"
 #include "TungstenFunctionLibrary.generated.h"
 
 class UTungstenAbilitySystemComponent;
-
-UENUM()
-enum class ETungstenConfirmType : uint8
-{
-	Yes,
-	No
-};
+class UPawnCombatComponent;
 
 /**
  * 
@@ -36,4 +31,10 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Tungsten|FunctionLibrary", meta = (DisplayName = "Does Actor Have Tag", ExpandEnumAsExecs = "OutConfirmType"))
 	static void BP_DoesActorHaveTag(AActor* InActor, FGameplayTag TagToCheck, ETungstenConfirmType& OutConfirmType);
+
+	UFUNCTION(BlueprintCallable, Category = "Tungsten|FunctionLibrary")
+	static UPawnCombatComponent* NativeGetPawnCombatComponentFromActor(AActor* InActor);
+
+	UFUNCTION(BlueprintCallable, Category = "Tungsten|FunctionLibrary", meta = (DisplayName = "Get Pawn Combat Component From Actor", ExpandEnumAsExecs = "OutValidType"))
+	static UPawnCombatComponent* BP_GetPawnCombatComponentFromActor(AActor* InActor, ETungstenValidType& OutValidType);
 };

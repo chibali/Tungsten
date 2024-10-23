@@ -10,6 +10,20 @@ void UDataAsset_StartUpDataBase::GiveToAbilitySystemComponent(UTungstenAbilitySy
 	check(InTungstenASCToGive);
 	GrantAbilities(ActivateOnGivenAbilities, InTungstenASCToGive, ApplyLevel);
 	GrantAbilities(ReactiveAbilities, InTungstenASCToGive, ApplyLevel);
+	if (!StartUpGameplayEffects.IsEmpty())
+	{
+		for (const TSubclassOf<UGameplayEffect>& EffectClass : StartUpGameplayEffects)
+		{
+			if (!EffectClass) continue;
+			UGameplayEffect* EffectCDO =EffectClass->GetDefaultObject<UGameplayEffect>();
+			InTungstenASCToGive->ApplyGameplayEffectToSelf(
+				EffectCDO,
+				ApplyLevel,
+				InTungstenASCToGive->MakeEffectContext()
+			);
+
+		}
+	}
 
 }
 

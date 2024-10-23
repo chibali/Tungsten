@@ -21,6 +21,11 @@ UAbilitySystemComponent* ATungstenCharacterBase::GetAbilitySystemComponent() con
 	return GetTungstenAbilitySystemComponent();
 }
 
+UPawnCombatComponent* ATungstenCharacterBase::GetPawnCombatComponent() const
+{
+	return nullptr;
+}
+
 void ATungstenCharacterBase::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);

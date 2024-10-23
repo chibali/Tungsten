@@ -43,6 +43,11 @@ ATungstenCharacter::ATungstenCharacter()
 
 }
 
+UPawnCombatComponent* ATungstenCharacter::GetPawnCombatComponent() const
+{
+	return CharacterCombatComponent;
+}
+
 void ATungstenCharacter::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);
