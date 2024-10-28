@@ -27,7 +27,7 @@ public:
 	UCharacterCombatComponent* GetTungstenCharacterCombatComponentFromActorInfo();
 
 	UFUNCTION(BlueprintPure, Category = "Tungsten|Ability")
-	FGameplayEffectSpecHandle MakeCharacterDamageEffectSpecHandle(TSubclassOf<UGameplayEffect> EffectClass, float InWeaponBaseDamage, FGameplayTag InCurrentAttackTypeTag, int32 InCurrentComboCount);
+	FGameplayEffectSpecHandle MakeCharacterDamageEffectSpecHandle(TSubclassOf<UGameplayEffect> EffectClass, float InWeaponBaseDamage, FGameplayTag InCurrentAttackTypeTag, int32 InUsedComboCount);
 
 
 private:

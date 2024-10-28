@@ -3,6 +3,7 @@
 #pragma once
 
 #include "GameplayTagContainer.h"
+#include "ScalableFloat.h"
 #include "TungstenStructTypes.generated.h"
 
 class UTungstenCharacterLinkedAnimLayer;
@@ -36,4 +37,7 @@ struct FTungstenCharacterWeaponData
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, meta = (TitleProperty = "InputTag"))
 	TArray<FTungstenCharacterAbilitySet> DefaultWeaponAblities;
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly)
+	FScalableFloat WeaponBaseDamage;
 };

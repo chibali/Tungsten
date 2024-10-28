@@ -4,6 +4,8 @@
 #include "AbilitySystem/Abilities/TungstenGameplayAbility.h"
 #include "AbilitySystem/TungstenAbilitySystemComponent.h"
 #include "Components/Combat/PawnCombatComponent.h"
+#include "AbilitySystemBlueprintLibrary.h"
+#include "TungstenTypes/TungstenEnumTypes.h"
 
 void UTungstenGameplayAbility::OnGiveAbility(const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilitySpec& Spec)
 {
@@ -40,4 +42,21 @@ UTungstenAbilitySystemComponent* UTungstenGameplayAbility::GetTungstenAbilitySys
 {
 	return Cast<UTungstenAbilitySystemComponent>(CurrentActorInfo->AbilitySystemComponent);
 	 
+}
+
+FActiveGameplayEffectHandle UTungstenGameplayAbility::NativeApplyEffectSpecHandleToTarget(AActor* TargetActor, const FGameplayEffectSpecHandle& InSpecHandle)
+{
+	UAbilitySystemComponent* TargetASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(TargetActor);
+	check(TargetASC && InSpecHandle.IsValid());
+
+	return GetTungstenAbilitySystemComponentFromActorInfo()->ApplyGameplayEffectSpecToTarget(*InSpecHandle.Data, TargetASC);
+}
+
+FActiveGameplayEffectHandle UTungstenGameplayAbility::BP_ApplyEffectSpecHandleToTarget(AActor* TargetActor, const FGameplayEffectSpecHandle& InSpecHandle, ETungstenSuccessType& OutSuccessType)
+{
+	FActiveGameplayEffectHandle ActiveGameplayEffectHandle = NativeApplyEffectSpecHandleToTarget(TargetActor, InSpecHandle);
+
+	OutSuccessType = ActiveGameplayEffectHandle.WasSuccessfullyApplied() ? ETungstenSuccessType::Successful : ETungstenSuccessType::Failed;
+
+	return ActiveGameplayEffectHandle;
 }

@@ -36,7 +36,7 @@ public:
 	FGameplayTag CurrentEquippedWeaponTag;
 
 	UFUNCTION(BlueprintCallable, Category = "Tungsten|Combat")
-	ATungstenWeaponBase* GetCharacterCurrentEquippedWeapon() const;
+	ATungstenWeaponBase* GetCurrentEquippedWeapon() const;
 
 	UFUNCTION(BlueprintCallable, Category = "Tungsten|Combat")
 	void ToggleWeaponCollision(bool bShouldEnable, EToggleDamageType ToggleDamageType = EToggleDamageType::CurrentEquippedWeapon);

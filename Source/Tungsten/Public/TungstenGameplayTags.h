@@ -24,6 +24,9 @@ namespace TungstenGameplayTags
 
 	TUNGSTEN_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_Status_JumpToFinisher);
 
+	TUNGSTEN_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_SetByCaller_AttackType_Light);
+	TUNGSTEN_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_SetByCaller_AttackType_Heavy);
+
 	/** Event Tags **/
 	TUNGSTEN_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_Event_Equip);
 	TUNGSTEN_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_Event_Unequip);

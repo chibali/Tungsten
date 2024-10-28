@@ -30,7 +30,7 @@ UCharacterCombatComponent* UTungstenCharacterGameplayAbility::GetTungstenCharact
     return GetTungstenCharacterFromActorInfo()->GetCharacterCombatComponent();
 }
 
-FGameplayEffectSpecHandle UTungstenCharacterGameplayAbility::MakeCharacterDamageEffectSpecHandle(TSubclassOf<UGameplayEffect> EffectClass, float InWeaponBaseDamage, FGameplayTag InCurrentAttackTypeTag, int32 InCurrentComboCount)
+FGameplayEffectSpecHandle UTungstenCharacterGameplayAbility::MakeCharacterDamageEffectSpecHandle(TSubclassOf<UGameplayEffect> EffectClass, float InWeaponBaseDamage, FGameplayTag InCurrentAttackTypeTag, int32 InUsedComboCount)
 {
     check(EffectClass);
 
@@ -54,7 +54,7 @@ FGameplayEffectSpecHandle UTungstenCharacterGameplayAbility::MakeCharacterDamage
     {
         EffectSpecHandle.Data->SetSetByCallerMagnitude(
             InCurrentAttackTypeTag,
-            InCurrentComboCount
+            InUsedComboCount
         );
     }
     return EffectSpecHandle;

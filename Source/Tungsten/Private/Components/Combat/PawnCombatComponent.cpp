@@ -37,7 +37,7 @@ ATungstenWeaponBase* UPawnCombatComponent::GetCharacterCarriedWeaponByTag(FGamep
 	return nullptr;
 }
 
-ATungstenWeaponBase* UPawnCombatComponent::GetCharacterCurrentEquippedWeapon() const
+ATungstenWeaponBase* UPawnCombatComponent::GetCurrentEquippedWeapon() const
 {
 	if (!CurrentEquippedWeaponTag.IsValid()) return nullptr;
 
@@ -48,7 +48,7 @@ void UPawnCombatComponent::ToggleWeaponCollision(bool bShouldEnable, EToggleDama
 {
 	if (ToggleDamageType == EToggleDamageType::CurrentEquippedWeapon)
 	{
-		ATungstenWeaponBase* WeaponToToggle = GetCharacterCurrentEquippedWeapon();
+		ATungstenWeaponBase* WeaponToToggle = GetCurrentEquippedWeapon();
 
 		check(WeaponToToggle);
 

@@ -11,6 +11,16 @@ ATungstenCharacterWeapon* UCharacterCombatComponent::GetHeroCarriedWeaponByTag(F
 	return Cast<ATungstenCharacterWeapon>(GetCharacterCarriedWeaponByTag(InWeaponTag));
 }
 
+ATungstenCharacterWeapon* UCharacterCombatComponent::GetCharacterCurrentEquippedWeapon() const
+{
+	return Cast<ATungstenCharacterWeapon>(GetCurrentEquippedWeapon());
+}
+
+float UCharacterCombatComponent::GetCharacterCurrentEquippedWeaponDamageAtLevel(float InLevel) const
+{
+	return GetCharacterCurrentEquippedWeapon()->CharacterWeaponData.WeaponBaseDamage.GetValueAtLevel(InLevel);
+}
+
 void UCharacterCombatComponent::OnHitTargetActor(AActor* HitActor)
 {
 	if (OverlappedActors.Contains(HitActor)) return;

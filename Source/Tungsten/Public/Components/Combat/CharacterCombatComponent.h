@@ -17,8 +17,14 @@ class TUNGSTEN_API UCharacterCombatComponent : public UPawnCombatComponent
 	GENERATED_BODY()
 	
 public:
-	UFUNCTION(BlueprintPure, Category = "Warrior|Combat")
+	UFUNCTION(BlueprintPure, Category = "Tungsten|Combat")
 	ATungstenCharacterWeapon* GetHeroCarriedWeaponByTag(FGameplayTag InWeaponTag);
+
+	UFUNCTION(BlueprintPure, Category = "Tungsten|Combat")
+	ATungstenCharacterWeapon* GetCharacterCurrentEquippedWeapon() const;
+
+	UFUNCTION(BlueprintPure, Category = "Tungsten|Combat")
+	float GetCharacterCurrentEquippedWeaponDamageAtLevel(float InLevel) const;
 
 	virtual void OnHitTargetActor(AActor* HitActor) override;
 	virtual void OnWeaponPulledFromTargetActor(AActor* InteractedActor) override;

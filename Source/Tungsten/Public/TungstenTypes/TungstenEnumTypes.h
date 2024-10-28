@@ -13,3 +13,10 @@ enum class ETungstenValidType : uint8
 	Valid,
 	Invalid
 };
+
+UENUM()
+enum class ETungstenSuccessType : uint8
+{
+	Successful,
+	Failed
+};
