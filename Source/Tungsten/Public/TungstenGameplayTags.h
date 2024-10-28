@@ -28,6 +28,10 @@ namespace TungstenGameplayTags
 	TUNGSTEN_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_Event_Equip);
 	TUNGSTEN_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_Event_Unequip);
 
+	/** Shared Tags **/
+	TUNGSTEN_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Shared_Event_MeleeHit);
+	TUNGSTEN_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Shared_SetByCaller_BaseDamage);
+
 	/** Enemy Tags **/
 	TUNGSTEN_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Enemy_Weapon);
 }

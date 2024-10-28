@@ -17,14 +17,18 @@ class TUNGSTEN_API UTungstenCharacterGameplayAbility : public UTungstenGameplayA
 	GENERATED_BODY()
 	
 public:
-	UFUNCTION(BlueprintPure, Category = "Warrior|Ability")
+	UFUNCTION(BlueprintPure, Category = "Tungsten|Ability")
 	ATungstenCharacter* GetTungstenCharacterFromActorInfo();
 
-	UFUNCTION(BlueprintPure, Category = "Warrior|Ability")
+	UFUNCTION(BlueprintPure, Category = "Tungsten|Ability")
 	ATungstenController* GetTungstenControllerFromActorInfo();
 
-	UFUNCTION(BlueprintPure, Category = "Warrior|Ability")
+	UFUNCTION(BlueprintPure, Category = "Tungsten|Ability")
 	UCharacterCombatComponent* GetTungstenCharacterCombatComponentFromActorInfo();
+
+	UFUNCTION(BlueprintPure, Category = "Tungsten|Ability")
+	FGameplayEffectSpecHandle MakeCharacterDamageEffectSpecHandle(TSubclassOf<UGameplayEffect> EffectClass, float InWeaponBaseDamage, FGameplayTag InCurrentAttackTypeTag, int32 InCurrentComboCount);
+
 
 private:
 	TWeakObjectPtr<ATungstenCharacter> CachedTungstenCharacter;
