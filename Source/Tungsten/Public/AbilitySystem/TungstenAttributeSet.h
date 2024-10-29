@@ -24,6 +24,8 @@ class TUNGSTEN_API UTungstenAttributeSet : public UAttributeSet
 public:
 	UTungstenAttributeSet();
 
+	virtual void PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData& Data) override;
+
 	UPROPERTY(BlueprintReadOnly, Category = "Health")
 	FGameplayAttributeData CurrentHealth;
 	ATTRIBUTE_ACCESSORS(UTungstenAttributeSet, CurrentHealth);
