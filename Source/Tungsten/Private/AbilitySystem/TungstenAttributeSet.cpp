@@ -3,7 +3,10 @@
 
 #include "AbilitySystem/TungstenAttributeSet.h"
 #include "GameplayEffectExtension.h"
+#include "TungstenFunctionLibrary.h"
+#include "TungstenGameplayTags.h"
 #include "TungstenDebugHelper.h"
+
 
 UTungstenAttributeSet::UTungstenAttributeSet()
 {
@@ -46,6 +49,10 @@ void UTungstenAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCa
 
 		Debug::Print(DebugString, FColor::Green);
 		// TODO:: Notify UI
-		// TODO:: Handle Death
+		if (NewCurrentHealth == 0.f)
+		{
+			UTungstenFunctionLibrary::AddGameplayTagToActorIfNone(Data.Target.GetAvatarActor(), TungstenGameplayTags::Shared_Status_Death);
+
+		}
 	}
 }
