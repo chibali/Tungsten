@@ -21,6 +21,7 @@ namespace TungstenGameplayTags
 	TUNGSTEN_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_Ability_Unequip);
 	TUNGSTEN_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_Ability_Attack_Light_Sword);
 	TUNGSTEN_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_Ability_Attack_Heavy_Sword);
+	TUNGSTEN_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_Ability_HitPause);
 
 	TUNGSTEN_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_Status_JumpToFinisher);
 
@@ -30,7 +31,7 @@ namespace TungstenGameplayTags
 	/** Event Tags **/
 	TUNGSTEN_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_Event_Equip);
 	TUNGSTEN_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_Event_Unequip);
-	
+	TUNGSTEN_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Player_Event_HitPause);
 
 	/** Shared Tags **/
 	TUNGSTEN_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Shared_Event_MeleeHit);

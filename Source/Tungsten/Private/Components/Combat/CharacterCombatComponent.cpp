@@ -36,10 +36,18 @@ void UCharacterCombatComponent::OnHitTargetActor(AActor* HitActor)
 		TungstenGameplayTags::Shared_Event_MeleeHit,
 		Data
 	);
-
+	UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(
+		GetOwningPawn(),
+		TungstenGameplayTags::Player_Event_HitPause,
+		FGameplayEventData()
+	);
 }
 
 void UCharacterCombatComponent::OnWeaponPulledFromTargetActor(AActor* InteractedActor)
 {
-	
+	UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(
+		GetOwningPawn(),
+		TungstenGameplayTags::Player_Event_HitPause,
+		FGameplayEventData()
+	);
 }
