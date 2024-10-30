@@ -29,11 +29,11 @@ void UTungstenAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCa
 		CachedPawnUIInterface = TWeakInterfacePtr<IPawnUIInterface>(Data.Target.GetAvatarActor());
 	}
 
-	checkf(CachedPawnUIInterface.IsValid(), TEXT("%s didn't implement IPawnUIInterface"), Data.Target.GetAvatarActor()->GetName());
+	checkf(CachedPawnUIInterface.IsValid(), TEXT("%s didn't implement IPawnUIInterface"), *Data.Target.GetAvatarActor()->GetActorNameOrLabel());
 
 	UPawnUIComponent* PawnUIComponent = CachedPawnUIInterface->GetPawnUIComponent();
 
-	checkf(PawnUIComponent, TEXT("%s didn't implement IPawnUIInterface"), Data.Target.GetAvatarActor()->GetName());
+	checkf(PawnUIComponent, TEXT("%s didn't implement IPawnUIInterface"), *Data.Target.GetAvatarActor()->GetActorNameOrLabel());
 
 	if (Data.EvaluatedData.Attribute == GetCurrentHealthAttribute())
 	{
@@ -63,10 +63,9 @@ void UTungstenAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCa
 
 		PawnUIComponent->OnCurrentHealthChanged.Broadcast(GetCurrentHealth() / GetMaxHealth());
 
-		if (NewCurrentHealth == 0.f)
+		if (GetCurrentHealth() == 0.f)
 		{
 			UTungstenFunctionLibrary::AddGameplayTagToActorIfNone(Data.Target.GetAvatarActor(), TungstenGameplayTags::Shared_Status_Death);
-
 		}
 	}
 }
