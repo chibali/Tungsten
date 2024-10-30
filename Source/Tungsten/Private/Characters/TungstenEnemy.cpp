@@ -6,6 +6,8 @@
 #include "Components/Combat/EnemyCombatComponent.h"
 #include "Engine/AssetManager.h"
 #include "DataAssets/StartUpData/DataAsset_EnemyStartUpData.h"
+#include "Components/UI/EnemyUIComponent.h"
+
 #include "TungstenDebugHelper.h"
 
 ATungstenEnemy::ATungstenEnemy()
@@ -23,11 +25,18 @@ ATungstenEnemy::ATungstenEnemy()
 	GetCharacterMovement()->BrakingDecelerationWalking = 1000.f;
 
 	EnemyCombatComponent = CreateDefaultSubobject<UEnemyCombatComponent>(TEXT("EnemyCombatComponent"));
+	EnemyUIComponent = CreateDefaultSubobject<UEnemyUIComponent>(TEXT("EnemyUIComponent"));
 }
+
 
 UPawnCombatComponent* ATungstenEnemy::GetPawnCombatComponent() const
 {
 	return EnemyCombatComponent;
+}
+
+UPawnUIComponent* ATungstenEnemy::GetPawnUIComponent() const
+{
+	return EnemyUIComponent;
 }
 
 void ATungstenEnemy::PossessedBy(AController* NewController)

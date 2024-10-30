@@ -26,6 +26,11 @@ UPawnCombatComponent* ATungstenCharacterBase::GetPawnCombatComponent() const
 	return nullptr;
 }
 
+UPawnUIComponent* ATungstenCharacterBase::GetPawnUIComponent() const
+{
+	return nullptr;
+}
+
 void ATungstenCharacterBase::PossessedBy(AController* NewController)
 {
 	Super::PossessedBy(NewController);

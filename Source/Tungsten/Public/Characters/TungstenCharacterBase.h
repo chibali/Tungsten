@@ -6,6 +6,8 @@
 #include "GameFramework/Character.h"
 #include "AbilitySystemInterface.h"
 #include "Interfaces/PawnCombatInterface.h"
+#include "Interfaces/PawnUIInterface.h"
+
 #include "TungstenCharacterBase.generated.h"
 
 class UTungstenAbilitySystemComponent;
@@ -13,7 +15,7 @@ class UTungstenAttributeSet;
 class UDataAsset_StartUpDataBase;
 
 UCLASS()
-class TUNGSTEN_API ATungstenCharacterBase : public ACharacter, public IAbilitySystemInterface, public IPawnCombatInterface
+class TUNGSTEN_API ATungstenCharacterBase : public ACharacter, public IAbilitySystemInterface, public IPawnCombatInterface, public IPawnUIInterface
 {
 	GENERATED_BODY()
 
@@ -28,6 +30,9 @@ public:
 	virtual UPawnCombatComponent* GetPawnCombatComponent() const override;
 	//~ End IPawnCombatInterface Interface
 	
+	//~ Begin IPawnUIInterface Interface
+	virtual UPawnUIComponent* GetPawnUIComponent() const override;
+	//~ End IPawnUIInterface Interface
 
 protected:	
 	//~ Begin APawn Interface

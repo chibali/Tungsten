@@ -13,6 +13,7 @@
 #include "AbilitySystem/TungstenAbilitySystemComponent.h"
 #include "DataAssets/StartUpData/DataAsset_CharacterData.h"
 #include "Components/Combat/CharacterCombatComponent.h"
+#include "Components/UI/CharacterUIComponent.h"
 
 #include "TungstenDebugHelper.h"
 
@@ -41,11 +42,22 @@ ATungstenCharacter::ATungstenCharacter()
 
 	CharacterCombatComponent = CreateDefaultSubobject<UCharacterCombatComponent>(TEXT("CharacterCombatComponent"));
 
+	CharacterUIComponent = CreateDefaultSubobject<UCharacterUIComponent>(TEXT("CharacterUIComponent"));
 }
 
 UPawnCombatComponent* ATungstenCharacter::GetPawnCombatComponent() const
 {
 	return CharacterCombatComponent;
+}
+
+UPawnUIComponent* ATungstenCharacter::GetPawnUIComponent() const
+{
+	return CharacterUIComponent;;
+}
+
+UCharacterUIComponent* ATungstenCharacter::GetCharacterUIComponent() const
+{
+	return CharacterUIComponent;
 }
 
 void ATungstenCharacter::PossessedBy(AController* NewController)
