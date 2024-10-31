@@ -8,6 +8,8 @@
 
 class UPawnUIComponent;
 class UCharacterUIComponent;
+class UEnemyUIComponent;
+
 
 // This class does not need to be modified.
 UINTERFACE(MinimalAPI)
@@ -27,4 +29,5 @@ class TUNGSTEN_API IPawnUIInterface
 public:
 	virtual UPawnUIComponent* GetPawnUIComponent() const = 0;
 	virtual UCharacterUIComponent* GetCharacterUIComponent() const;
+	virtual UEnemyUIComponent* GetEnemyUIComponent() const;
 };

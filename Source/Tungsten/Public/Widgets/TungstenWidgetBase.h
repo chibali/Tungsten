@@ -7,7 +7,7 @@
 #include "TungstenWidgetBase.generated.h"
 
 class UCharacterUIComponent;
-
+class UEnemyUIComponent;
 /**
  * 
  */
@@ -22,4 +22,11 @@ public:
 
 	UFUNCTION(BlueprintImplementableEvent, meta = (DisplayName = "OnOwningCharacterUIComponentInitialized"))
 	void BP_OnOwningCharacterUIComponentInitialized(UCharacterUIComponent* OwningCharacterUIComponent);
+
+	UFUNCTION(BlueprintImplementableEvent, meta = (DisplayName = "OnOwningEnemyUIComponentInitialized"))
+	void BP_OnOwningEnemyUIComponentInitialized(UEnemyUIComponent* OwningEnemyUIComponent);
+
+public:
+	UFUNCTION(Blueprintcallable)
+	void InitEnemyCreatedWidget(AActor* OwningEnemyActor);
 };

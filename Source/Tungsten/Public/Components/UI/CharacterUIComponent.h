@@ -6,6 +6,8 @@
 #include "Components/UI/PawnUIComponent.h"
 #include "CharacterUIComponent.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnEquippedWeaponChangedDelegate, TSoftObjectPtr<UTexture2D>, SoftWeaponIcon);
+
 /**
  * 
  */
@@ -17,4 +19,7 @@ class TUNGSTEN_API UCharacterUIComponent : public UPawnUIComponent
 public:
 	UPROPERTY(BlueprintAssignable)
 	FOnPercentChangedDelegate OnCurrentManaChanged;
+
+	UPROPERTY(BlueprintCallable, BlueprintAssignable)
+	FOnEquippedWeaponChangedDelegate OnEquippedWeaponChanged;
 };

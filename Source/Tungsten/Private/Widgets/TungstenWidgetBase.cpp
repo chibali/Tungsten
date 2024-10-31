@@ -16,3 +16,14 @@ void UTungstenWidgetBase::NativeOnInitialized()
 		}
 	}
 }
+
+void UTungstenWidgetBase::InitEnemyCreatedWidget(AActor* OwningEnemyActor)
+{
+	if (IPawnUIInterface* PawnUIInterface = Cast<IPawnUIInterface>(OwningEnemyActor))
+	{
+		UEnemyUIComponent* EnemyUIComponent = PawnUIInterface->GetEnemyUIComponent();
+		checkf(EnemyUIComponent, TEXT("Failed to extract an EnemyUIComponent from %s"), *OwningEnemyActor->GetName());
+
+		BP_OnOwningEnemyUIComponentInitialized(EnemyUIComponent);
+	}
+}

@@ -7,6 +7,8 @@
 #include "Engine/AssetManager.h"
 #include "DataAssets/StartUpData/DataAsset_EnemyStartUpData.h"
 #include "Components/UI/EnemyUIComponent.h"
+#include "Components/WidgetComponent.h"
+#include "Widgets/TungstenWidgetBase.h"
 
 #include "TungstenDebugHelper.h"
 
@@ -25,7 +27,11 @@ ATungstenEnemy::ATungstenEnemy()
 	GetCharacterMovement()->BrakingDecelerationWalking = 1000.f;
 
 	EnemyCombatComponent = CreateDefaultSubobject<UEnemyCombatComponent>(TEXT("EnemyCombatComponent"));
+
 	EnemyUIComponent = CreateDefaultSubobject<UEnemyUIComponent>(TEXT("EnemyUIComponent"));
+
+	EnemyHealthWidgetComponent = CreateDefaultSubobject<UWidgetComponent>(TEXT("EnemyHealthWIdgetComponent"));
+	EnemyHealthWidgetComponent->SetupAttachment(GetMesh());
 }
 
 
@@ -37,6 +43,20 @@ UPawnCombatComponent* ATungstenEnemy::GetPawnCombatComponent() const
 UPawnUIComponent* ATungstenEnemy::GetPawnUIComponent() const
 {
 	return EnemyUIComponent;
+}
+
+UEnemyUIComponent* ATungstenEnemy::GetEnemyUIComponent() const
+{
+	return EnemyUIComponent;
+}
+
+void ATungstenEnemy::BeginPlay()
+{
+	Super::BeginPlay();
+	if (UTungstenWidgetBase* HealthWidget = Cast<UTungstenWidgetBase>(EnemyHealthWidgetComponent->GetUserWidgetObject()))
+	{
+		HealthWidget->InitEnemyCreatedWidget(this);
+	}
 }
 
 void ATungstenEnemy::PossessedBy(AController* NewController)
