@@ -3,3 +3,12 @@
 
 #include "Controllers/TungstenController.h"
 
+ATungstenController::ATungstenController()
+{
+	HeroTeamId = FGenericTeamId(0);
+}
+
+FGenericTeamId ATungstenController::GetGenericTeamId() const
+{
+	return HeroTeamId;
+}
