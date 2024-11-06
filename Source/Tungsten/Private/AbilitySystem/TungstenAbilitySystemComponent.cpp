@@ -2,6 +2,7 @@
 
 
 #include "AbilitySystem/TungstenAbilitySystemComponent.h"
+#include "AbilitySystem/Abilities/TungstenCharacterGameplayAbility.h"
 #include "AbilitySystem/Abilities/TungstenGameplayAbility.h"
 
 void UTungstenAbilitySystemComponent::OnAbilityInputPressed(const FGameplayTag& InInputTag)
@@ -50,4 +51,26 @@ void UTungstenAbilitySystemComponent::RemoveGrantedCharacterAbilities(UPARAM(ref
 
 	}
 	InSpecHandlesToRemove.Empty();
+}
+
+bool UTungstenAbilitySystemComponent::TryActivateAbilityByTag(FGameplayTag AbilityTagToActivate)
+{
+	check(AbilityTagToActivate.IsValid());
+
+	TArray<FGameplayAbilitySpec*> FoundAbilitySpec;
+	GetActivatableGameplayAbilitySpecsByAllMatchingTags(AbilityTagToActivate.GetSingleTagContainer(), FoundAbilitySpec);
+
+	if (!FoundAbilitySpec.IsEmpty())
+	{
+		const int32 RandomAbilityIndex = FMath::RandRange(0, FoundAbilitySpec.Num() - 1);
+		FGameplayAbilitySpec* SpecToActivate = FoundAbilitySpec[RandomAbilityIndex];
+
+		check(SpecToActivate);
+
+		if (!SpecToActivate->IsActive())
+		{
+			return TryActivateAbility(SpecToActivate->Handle);
+		}
+	}
+	return false;
 }
