@@ -3,6 +3,8 @@
 
 #include "AnimInstances/TungstenBaseAnimInstance.h"
 #include "Characters/TungstenCharacterBase.h"
+#include "KismetAnimationLibrary.h"
+#include "TungstenFunctionLibrary.h"
 #include "GameFramework/CharacterMovementComponent.h"
 
 void UTungstenBaseAnimInstance::NativeInitializeAnimation()
@@ -21,4 +23,15 @@ void UTungstenBaseAnimInstance::NativeThreadSafeUpdateAnimation(float DeltaSecon
 
 	GroundSpeed = OwningCharacter->GetVelocity().Size2D();
 	bHasAcceleration = OwningMovementComponent->GetCurrentAcceleration().SizeSquared2D() > 0.f;
+
+	LocomotionDirection = UKismetAnimationLibrary::CalculateDirection(OwningCharacter->GetVelocity(), OwningCharacter->GetActorRotation());
+}
+
+bool UTungstenBaseAnimInstance::DoesOwnerHaveTag(FGameplayTag TagToCheck) const
+{
+	if (APawn* OwningPawn = TryGetPawnOwner())
+	{
+		return UTungstenFunctionLibrary::NativeDoesActorHaveTag(OwningPawn, TagToCheck);
+	}
+	return false;
 }
