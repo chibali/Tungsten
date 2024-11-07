@@ -4,7 +4,7 @@
 #include "Characters/TungstenCharacterBase.h"
 #include "AbilitySystem/TungstenAttributeSet.h"
 #include "AbilitySystem/TungstenAbilitySystemComponent.h"
-
+#include "MotionWarpingComponent.h"
 
 ATungstenCharacterBase::ATungstenCharacterBase()
 {
@@ -14,6 +14,8 @@ ATungstenCharacterBase::ATungstenCharacterBase()
 
 	TungstenAbilitySystemComponent = CreateDefaultSubobject<UTungstenAbilitySystemComponent>(TEXT("TungstenAbilitySystemComponent"));
 	TungstenAttributeSet = CreateDefaultSubobject<UTungstenAttributeSet>(TEXT("TungstenAttributeSystem"));
+
+	MotionWarpingComponent = CreateDefaultSubobject<UMotionWarpingComponent>(TEXT("MotionWarpingComponent"));
 }
 
 UAbilitySystemComponent* ATungstenCharacterBase::GetAbilitySystemComponent() const
