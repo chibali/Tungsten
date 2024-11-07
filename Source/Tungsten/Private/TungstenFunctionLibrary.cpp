@@ -5,6 +5,7 @@
 #include "AbilitySystemBlueprintLibrary.h"
 #include "AbilitySystem/TungstenAbilitySystemComponent.h"
 #include "Interfaces/PawnCombatInterface.h"
+#include "GenericTeamAgentInterface.h"
 
 UTungstenAbilitySystemComponent* UTungstenFunctionLibrary::NativeGetTunsgtenASCFromActor(AActor* InActor)
 {
@@ -58,4 +59,17 @@ UPawnCombatComponent* UTungstenFunctionLibrary::BP_GetPawnCombatComponentFromAct
 	UPawnCombatComponent* CombatComponent = NativeGetPawnCombatComponentFromActor(InActor);
 	OutValidType = CombatComponent ? ETungstenValidType::Valid : ETungstenValidType::Invalid;
 	return CombatComponent;
+}
+
+bool UTungstenFunctionLibrary::IsTargetPawnHostile(APawn* QueryPawn, APawn* TargetPawn)
+{
+	check (QueryPawn && TargetPawn)
+	IGenericTeamAgentInterface* QueryTeamAgent = Cast<IGenericTeamAgentInterface>(QueryPawn->GetController());
+	IGenericTeamAgentInterface* TargetTeamAgent = Cast<IGenericTeamAgentInterface>(TargetPawn->GetController());
+
+	if (QueryTeamAgent && TargetTeamAgent)
+	{
+		return QueryTeamAgent->GetGenericTeamId() != TargetTeamAgent->GetGenericTeamId();
+	}
+	return false;
 }

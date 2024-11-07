@@ -4,6 +4,7 @@
 #include "Items/Weapons/TungstenWeaponBase.h"
 #include "Components/BoxComponent.h"
 #include "TungstenDebugHelper.h"
+#include "TungstenFunctionLibrary.h"
 
 ATungstenWeaponBase::ATungstenWeaponBase()
 {
@@ -28,11 +29,10 @@ void ATungstenWeaponBase::OnComponentBeginOverlap(UPrimitiveComponent* Overlappe
 	
 	if (APawn* HitPawn = Cast<APawn>(OtherActor))
 	{
-		if (WeaponOwningPawn != HitPawn)
+		if (UTungstenFunctionLibrary::IsTargetPawnHostile(WeaponOwningPawn, HitPawn))
 		{
 			OnWeaponHitTarget.ExecuteIfBound(OtherActor);
 		}
-		// TODO: implemente hit check for enemies
 	}
 }
 
@@ -43,11 +43,10 @@ void ATungstenWeaponBase::OnComponentEndOverlap(UPrimitiveComponent* OverlappedC
 
 	if (APawn* HitPawn = Cast<APawn>(OtherActor))
 	{
-		if (WeaponOwningPawn != HitPawn)
+		if (UTungstenFunctionLibrary::IsTargetPawnHostile(WeaponOwningPawn, HitPawn))
 		{
 			OnWeaponPulledFromTarget.ExecuteIfBound(OtherActor);
 		}
-		// TODO: implemente hit check for enemies
 	}
 }
 
