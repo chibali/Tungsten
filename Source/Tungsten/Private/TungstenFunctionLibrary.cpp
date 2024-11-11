@@ -6,6 +6,8 @@
 #include "AbilitySystem/TungstenAbilitySystemComponent.h"
 #include "Interfaces/PawnCombatInterface.h"
 #include "GenericTeamAgentInterface.h"
+#include "Kismet/KismetMathLibrary.h"
+#include "TungstenGameplayTags.h"
 
 UTungstenAbilitySystemComponent* UTungstenFunctionLibrary::NativeGetTunsgtenASCFromActor(AActor* InActor)
 {
@@ -72,4 +74,46 @@ bool UTungstenFunctionLibrary::IsTargetPawnHostile(APawn* QueryPawn, APawn* Targ
 		return QueryTeamAgent->GetGenericTeamId() != TargetTeamAgent->GetGenericTeamId();
 	}
 	return false;
+}
+
+float UTungstenFunctionLibrary::GetScalableFloatValueAtLevel(const FScalableFloat& InScalableFloat, float InLevel)
+{
+	return InScalableFloat.GetValueAtLevel(InLevel);
+}
+
+FGameplayTag UTungstenFunctionLibrary::ComputeHitReactDirectionTag(AActor* InAttacker, AActor* InVictim, float& OutAngleDifference)
+{
+	check(InAttacker && InVictim);
+	const FVector VictimForward = InVictim->GetActorForwardVector();
+	const FVector VictimToAttackerNormalized = (InAttacker->GetActorLocation() - InVictim->GetActorLocation()).GetSafeNormal();
+
+	const float DotResult = FVector::DotProduct(VictimForward, VictimToAttackerNormalized);
+	OutAngleDifference = UKismetMathLibrary::DegAcos(DotResult);
+
+	const FVector CrossResult = FVector::CrossProduct(VictimForward, VictimToAttackerNormalized);
+	if (CrossResult.Z < 0.f)
+	{
+		OutAngleDifference *= -1.f;
+	}
+	if (OutAngleDifference <= 45.f && OutAngleDifference >= -45.f)
+	{
+		return TungstenGameplayTags::Shared_Status_HitReact_Front;
+
+	}
+	else if (OutAngleDifference <= -45.f && OutAngleDifference >= -135.f)
+	{
+		return TungstenGameplayTags::Shared_Status_HitReact_Left;
+
+	}
+	else if (OutAngleDifference <= -135.f && OutAngleDifference >= 135.f)
+	{
+		return TungstenGameplayTags::Shared_Status_HitReact_Back;
+
+	}
+	else if (OutAngleDifference <= 135.f && OutAngleDifference >= 45.f)
+	{
+		return TungstenGameplayTags::Shared_Status_HitReact_Right;
+
+	}
+	return FGameplayTag();
 }
